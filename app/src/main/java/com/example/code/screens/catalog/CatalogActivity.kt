@@ -71,28 +71,21 @@ class CatalogActivity : CatalogContract.View<CatalogViewModel>(
 
 
     override fun observeProducts(products: ArrayList<ProductEntity>) {
-        launch {
             productsAdapter.updateItems(products)
-        }
     }
 
     override fun observeNavigateToProductScreen(event: Event<Any>) {
-        launch {
             startActivity(Intent(this@CatalogActivity, ProductActivity::class.java))
-        }
+
     }
 
     override fun observeMessage(event: Event<Int>) {
-        launch {
             Snackbar.make(rvProducts, getString(event.peekContent()), Snackbar.LENGTH_SHORT)
                 .show()
-        }
     }
 
     override fun observeProductsAmount(amount: Int) {
-        launch {
             tvProductsAmount.text = getString(R.string.products_found, amount)
-        }
     }
 
 }

@@ -42,27 +42,21 @@ class ProductActivity : ProductContract.View<ProductViewModel>(
     }
 
     override fun observeMessage(event: Event<Int>) {
-        launch {
             with(Snackbar.make(root, getString(event.peekContent()), Snackbar.LENGTH_SHORT)) {
                 anchorView = llProductInfo
                 show()
             }
-
-        }
     }
 
     override fun observeAddedToFavorite(added: Boolean) {
-        launch {
             if (added) {
                 ivFavorite.setImageResource(R.drawable.ic_favorite_added)
             } else {
                 ivFavorite.setImageResource(R.drawable.ic_favorite_not_added)
             }
-        }
     }
 
     override fun observeProduct(product: ProductEntity) {
-        launch {
             tvTitle.text = product.title
             tvPrice.text = getString(R.string.price, product.price)
             if (product.isFavorite) {
@@ -78,13 +72,10 @@ class ProductActivity : ProductContract.View<ProductViewModel>(
                     .into(ivImage)
             }
 
-        }
     }
 
     override fun observeNavigateToPreviousScreen(event: Event<Unit>) {
-        launch {
             finish()
-        }
     }
 
 
